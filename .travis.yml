@@ -2,9 +2,9 @@ language: go
 go: 1.6.3
 
 script:
-  - if [ -n "${TRAVIS_TAG}" ]; then VERSION=x.y.z; else VERSION=${TRAVIS_TAG:1};
+  - TRAVIS_TAG=${TRAVIS_TAG:−vx.y.z}
   - make test
-  - make dist 
+  - VERSION=${TRAVIS_TAG:1} make dist 
 
 deploy:
   provider: releases
