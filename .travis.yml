@@ -1,15 +1,28 @@
----
-  language: go
-  sudo: false
-  notifications:
-    email: false
-  go:
-    - 1.5
-    - tip
-  install:
-    - go get -t ./...
-    - go get github.com/golang/lint/golint
-  script:
-    - go vet ./...
-    - test -z "$(golint ./... | tee /dev/stderr)"
-    - go test -v ./...
+language: go
+go: 1.6.3
+
+script:
+  - make test
+  - VERSION=x.y.z make dist 
+  - make clean
+
+before_deploy:
+  - VERSION=${TRAVIS_TAG:1} make dist
+
+deploy:
+  provider: releases
+  api_key:
+    secure: pUeg0HZTMTVk3AyEewgtP/6+yZ3s8YAYf9og+kQg5OJ3pzVPjjqr/QZSeLmx2rINJjRNaZtZ1e2nqeTKr80QHS7wMj4mPATtpqqk3qFpGcSQ0EisVh6IJVkjaHiBKeHeuliQRy4HFKsIr1ZRmhuT7ldd+nCrhnol3Gh3wiDFhz3Z8AX9HZ+tyuZ4m5znRgY217wSxXaryf9jfxp9Y8V9uFzcPxxRWVE9xEl+ZSTCt7bkUoxnfvMofOlL9H5nJTuKCJv2k5db6P6/koZur8oSadtNVZyAfZoJQtBMgjuddOf60FQ4gxKELTSPTQaLHEr+hnkUhfTUNNy5OrLAuVbNL4HnPaeW4hsyGc6h9LCDn9P+oBwj58Gqe9tC97UDrjHd1IN60qIGvUOT6T8XRn0koVBVgkYWTqnNrfQwnGZdNAxqO4wdPEXeOqbwYKQlypI9qBGLceLHt745exyppWDt1UuO+yLcryvSe5iUyYOlKzBjjxIwI99ihF2fElLj6mnQ6Re1HGPzGV2/M7aCd9SKFZfoS6Odu7wKpTsJXNw7y7z+qlBjLFQkjbG58FVZ8tYYMUadUXSxIh1di7Imu6AinEnXRznKuLzoMP3Q81OVN+hcrF8C5ICmjaI3srnSAVaQZAd2nfpkbJGkKjjOkREWEMr/ABFahUMUBYlgAd3a+uY=
+  file:
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_amd64.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_386.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_arm.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_amd64.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_386.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_amd64.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_386.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_386.zip
+    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_amd64.zip
+  skip_cleanup: true
+  on:
+    tags: true
