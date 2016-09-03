@@ -55,7 +55,7 @@ uninstall:
 	rm -f /usr/local/bin/docker-volume-glusterfs
 .PHONY:	uninstall
 
-test:
+test: deps
 	$(call msg,"Run tests")
 	$(FLAGS_all) go test $(wildcard ../*.go)
 .PHONY: test
