@@ -18,7 +18,7 @@ var (
 )
 
 var (
-	version     = flag.Bool("version", "", "Version of Docker Volumen GlusterFS")
+	version     = flag.Bool("version", false, "Version of Docker Volumen GlusterFS")
 	defaultDir  = filepath.Join(volume.DefaultDockerRootDirectory, glusterfsID)
 	serversList = flag.String("servers", "", "List of glusterfs servers")
 	restAddress = flag.String("rest", "", "URL to glusterfsrest api")
@@ -52,14 +52,14 @@ func main() {
 func banner() {
 	fmt.Println("       __           __                            __                   ") 
 	fmt.Println("  ____/ /___  _____/ /_____  _____   _   ______  / /_  ______ ___  ___ ")
-	fmt.Println(" / __  / __ \/ ___/ //_/ _ \/ ___/  | | / / __ \/ / / / / __ `__ \/ _ \")
+	fmt.Println(" / __  / __ \\/ ___/ //_/ _ \\/ ___/  | | / / __ \\/ / / / / __ `__ \\/ _ \\")
 	fmt.Println("/ /_/ / /_/ / /__/ ,< /  __/ /      | |/ / /_/ / / /_/ / / / / / /  __/")
-	fmt.Println("\__,_/\____/\___/_/|_|\___/_/       |___/\____/_/\__,_/_/ /_/ /_/\___/ ")
+	fmt.Println("\\__,_/\\____/\\___/_/|_|\\___/_/       |___/\\____/_/\\__,_/_/ /_/ /_/\\___/ ")
 	fmt.Println("                       __           __            ____                 ")
 	fmt.Println("                ____ _/ /_  _______/ /____  _____/ __/____             ")
-	fmt.Println("               / __ `/ / / / / ___/ __/ _ \/ ___/ /_/ ___/             ")
+	fmt.Println("               / __ `/ / / / / ___/ __/ _ \\/ ___/ /_/ ___/             ")
 	fmt.Println("              / /_/ / / /_/ (__  ) /_/  __/ /  / __(__  )              ")
-	fmt.Println("              \__, /_/\__,_/____/\__/\___/_/  /_/ /____/               ")
+	fmt.Println("              \\__, /_/\\__,_/____/\\__/\\___/_/  /_/ /____/               ")
 	fmt.Println("             /____/                                                    ")
 	fmt.Println()
 	fmt.Println("Version : ", Version)
