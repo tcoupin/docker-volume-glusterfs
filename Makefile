@@ -29,10 +29,20 @@ msg=@printf "\n\033[0;01m>>> %s\033[0m\n" $1
 
 .DEFAULT_GOAL := build
 
-build: guard-VERSION
+build: guard-VERSION deps
 	$(call msg,"Build binary")
 	$(FLAGS_all) go build -ldflags "-X main.Version=${VERSION} -X main.Build=${BUILD}" -o docker-volume-glusterfs$(EXTENSION_$*) $(wildcard ../*.go)
 .PHONY: build
+
+deps:
+	$(call msg,"Get dependencies")
+	go get -t ./...
+	go get github.com/golang/lint/golint
+	go get github.com/Sirupsen/logrus
+	go get github.com/coreos/go-systemd/activation
+	go get github.com/opencontainers/runc/libcontainer/user
+	go get -d github.com/Microsoft/go-winio
+.PHONY: deps
 
 install: guard-VERSION build
 	$(call msg,"Install docker-volume-glusterfs")
@@ -55,10 +65,12 @@ clean:
 	rm -rf dist
 .PHONY: clean
 
-build-all: guard-VERSION $(foreach PLATFORM,$(PLATFORMS),dist/$(PLATFORM)/.built)
+build-all: deps guard-VERSION $(foreach PLATFORM,$(PLATFORMS),dist/$(PLATFORM)/.built)
 .PHONY: build-all
 
-dist: guard-VERSION build-all $(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).zip)
+dist: guard-VERSION build-all \
+$(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).zip) \
+$(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).tar.gz)
 .PHONY:	dist 
 
 tag-release: guard-TAG guard-TAG_MSG
@@ -83,6 +95,12 @@ dist/docker-volume-glusterfs-$(VERSION)-%.zip:
 	rm -f $@
 	mkdir -p $(dir $@)
 	zip -j $@ dist/$*/*
+
+dist/docker-volume-glusterfs-$(VERSION)-%.tar.gz:
+	$(call msg,"Create TAR for $*")
+	rm -f $@
+	mkdir -p $(dir $@)
+	tar czf $@ -C dist/$* .
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
