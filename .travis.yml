@@ -2,13 +2,12 @@ language: go
 go: 1.6.3
 
 script:
-  - if [ "${TRAVIS_TAG}" == "" ]; then;
-      export VERSION=`git rev-parse --abbrev-ref HEAD`; 
-      if [ "${VERSION}" == "HEAD" ]; then;
-        export VERSION=master;
-      fi;
-    else;
-      export VERSION=${TRAVIS_TAG:1};
+  - if [ "${TRAVIS_TAG}" == "" ];
+    then export VERSION=`git rev-parse --abbrev-ref HEAD`; 
+    if [ "${VERSION}" == "HEAD" ];
+    then export VERSION=master;
+    fi;
+    else export VERSION=${TRAVIS_TAG:1};
     fi;
     export BUILD=`git rev-parse HEAD`;
     echo "VERSION : ${VERSION}";
