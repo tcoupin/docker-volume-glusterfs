@@ -102,7 +102,7 @@ dist/docker-volume-glusterfs-$(VERSION)-%.tar.gz:
 	$(call msg,"Create TAR for $*")
 	rm -f $@
 	mkdir -p $(dir $@)
-	tar czf $@ -C dist/$* --exclude=.built .
+	tar czf $@ -C dist/$* --exclude=./.built .
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
