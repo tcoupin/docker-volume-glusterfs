@@ -9,7 +9,7 @@ This plugin uses GlusterFS as distributed data storage for containers.
 Using go (until we get proper binaries):
 
 ```
-$ go get github.com/calavera/docker-volume-glusterfs
+$ go get github.com/amarkwalder/docker-volume-glusterfs
 ```
 
 ## Usage
