@@ -61,7 +61,8 @@ test: deps
 .PHONY: test
 
 clean:
-	$(call msg,"Clean release directory")
+	$(call msg,"Clean directory")
+	rm -f docker-volume-glusterfs
 	rm -rf dist
 .PHONY: clean
 

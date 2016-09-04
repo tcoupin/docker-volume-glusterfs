@@ -20,24 +20,25 @@ deploy:
   api_key:
     secure: s5RkXfiKMVjqp18enCNNbBH7wwUSVzdTP0jb9odDN76WvtPov1vt3BIgDm4/c8BW7oEpUE5sEqywPRd0m03XmQaZ7yZtK9ognmx2KiBsuiwQw0C6p5us5ftoNDyYPdXqLzQZDaAWyZ5Z1mwCMQLSDjPyCpwu/t5m9/n58tw8nNVEY0aHdhDwUgCJns3QQwLv60hE+Ux7Q71JfWd95PIvPz0MUQveg253Eaf+QYxOyHskLhRexv/rOQ85esT0E+6m6G3kTOPCAxfP4Ndcoy4sHKVWATz4muC9xC8iId5sSmbIM8rgFnIIDSpIyePuT8iHrBhhfpEhH3dzGc9IGXH8vuWu9NvBaIm+s9R4nhTjPxCVB6IRC3ziodFeg7DC2g5iTB4CsNAw61+AkMOL3bwYWttiKrLxVWaoHX/loU0ouoUGRQajEcCT+zcSoo58EkJ29RxvZaiwOeAOxcASGMcSI8gfSexdmP1d0JzwwuYBLe76B5L17hnoo3KYr+e6EHBJLrojYpt30tGOaBIYD5wf3fyyJD7Ncq5k++2z9C0US89cf6rKhoK9Tk6hJRq0Yo3/BwuOHP8uDyP1O/jjbt76i5LDpenAunoegWYpGReI8lXp/uEf2oGrvqattrogr8dU5IzjyYhsl+KnuxczHZ4Bw58k8MC6O+FRAZ0Eh407KOw=
   file:
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_amd64.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_386.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_386.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_arm.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-linux_arm.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_amd64.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_386.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-darwin_386.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_amd64.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_386.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-freebsd_386.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_386.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_386.tar.gz
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_amd64.zip
-    - dist/docker-volume-glusterfs-${TRAVIS_TAG:1}-windows_amd64.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.zip
+    - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-linux_386.zip
+    - dist/docker-volume-glusterfs-${VERSION}-linux_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-linux_arm.zip
+    - dist/docker-volume-glusterfs-${VERSION}-linux_arm.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.zip
+    - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-darwin_386.zip
+    - dist/docker-volume-glusterfs-${VERSION}-darwin_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.zip
+    - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.zip
+    - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-windows_386.zip
+    - dist/docker-volume-glusterfs-${VERSION}-windows_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.zip
+    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.tar.gz
   skip_cleanup: true
+  overwrite: true
   on:
     tags: true
