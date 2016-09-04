@@ -74,7 +74,7 @@ $(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFO
 $(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).tar.gz)
 .PHONY:	dist 
 
-tag-release: guard-TAG guard-TAG_MSG
+release: dist guard-TAG guard-TAG_MSG
 	$(call msg,"Tag release")
 	git tag -a "$(TAG)" -m "$(TAG_MSG)"
 	git push --tags
