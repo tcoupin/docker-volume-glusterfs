@@ -2,20 +2,12 @@ language: go
 go: 1.6.3
 
 script:
-  - echo ${VERSION}
-  - echo ${TRAVIS_TAG}
   - if [ "${TRAVIS_TAG}" == "" ];
-    then export VERSION=x.y.z; 
+    then export VERSION=`git rev-parse --abbrev-ref HEAD`; 
     else export VERSION=${TRAVIS_TAG:1};
     fi
-  - echo ${VERSION}
-  - echo ${TRAVIS_TAG}
   - make test
-  - echo ${VERSION}
-  - echo ${TRAVIS_TAG}
   - make dist 
-  - echo ${VERSION}
-  - echo ${TRAVIS_TAG}
 deploy:
   provider: releases
   api_key:
