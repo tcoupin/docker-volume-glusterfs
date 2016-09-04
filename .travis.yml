@@ -11,9 +11,8 @@ script:
     fi;
     export BUILD=`git rev-parse HEAD`;
     echo ${VERSION} ${BUILD}
-  - make test
   - make build
-  - docker-volume-glusterfs -version
+  - make test
   - make dist 
 deploy:
   provider: releases
