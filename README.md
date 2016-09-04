@@ -1,4 +1,4 @@
-# Docker volume plugin for GlusterFS
+# Docker volume plugin for GlusterFS [![Release](https://img.shields.io/github/release/amarkwalder/docker-volume-glusterfs.svg)](https://github.com/amarkwalder/docker-volume-glusterfs/releases/latest)
 
 This plugin uses GlusterFS as distributed data storage for containers.
 
