@@ -4,7 +4,10 @@ go: 1.6.3
 script:
   - echo ${VERSION}
   - echo ${TRAVIS_TAG}
-  - VERSION=${TRAVIS_TAG:=vx.y.z}
+  - if [ "${TRAVIS_TAG}" == "" ];
+    then export VERSION=x.y.z; 
+    else export VERSION=${TRAVIS_TAG:1};
+    fi
   - echo ${VERSION}
   - echo ${TRAVIS_TAG}
   - make test
