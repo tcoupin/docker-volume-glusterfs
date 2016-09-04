@@ -2,9 +2,8 @@ language: go
 go: 1.6.3
 
 script:
-  - TRAVIS_TAG=${TRAVIS_TAG:=vx.y.z}
   - make test
-  - VERSION=${TRAVIS_TAG:1} make dist 
+  - VERSION=${TRAVIS_TAG:=vx.y.z} make dist 
 
 deploy:
   provider: releases
