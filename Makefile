@@ -96,13 +96,13 @@ dist/docker-volume-glusterfs-$(VERSION)-%.zip:
 	$(call msg,"Create ZIP for $*")
 	rm -f $@
 	mkdir -p $(dir $@)
-	zip -j $@ dist/$*/*
+	zip -j $@ dist/$*/* -x .built
 
 dist/docker-volume-glusterfs-$(VERSION)-%.tar.gz:
 	$(call msg,"Create TAR for $*")
 	rm -f $@
 	mkdir -p $(dir $@)
-	tar czf $@ -C dist/$* .
+	tar czf $@ -C dist/$* --exclude=.built .
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
