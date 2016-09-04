@@ -31,7 +31,8 @@ msg=@printf "\n\033[0;01m>>> %s\033[0m\n" $1
 
 build: guard-VERSION deps
 	$(call msg,"Build binary")
-	$(FLAGS_all) go build -ldflags "-X main.Version=${VERSION} -X main.Build=${BUILD}" -o docker-volume-glusterfs$(EXTENSION_$*) $(wildcard ../*.go)
+	$(FLAGS_all) go build -ldflags "-X main.Version=${VERSION} -X main.Build=${BUILD}" -o docker-volume-glusterfs$(EXTENSION_$GOOS_$GOARCH) *.go
+	./docker-volume-glusterfs -version
 .PHONY: build
 
 deps:
