@@ -10,8 +10,7 @@ script:
     then export VERSION=master;
     fi
   - export BUILD=`git rev-parse HEAD`
-  - echo "VERSION : ${VERSION}"
-  - echo "BUILD   : ${BUILD}"
+  - echo ${VERSION} ${BUILD}
   - make test
   - make dist 
 deploy:
