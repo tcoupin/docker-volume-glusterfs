@@ -2,11 +2,17 @@ language: go
 go: 1.6.3
 
 script:
+  - echo ${VERSION}
   - echo ${TRAVIS_TAG}
-  - git tag
+  - VERSION=${TRAVIS_TAG:=vx.y.z}
+  - echo ${VERSION}
+  - echo ${TRAVIS_TAG}
   - make test
-  - VERSION=${TRAVIS_TAG:=vx.y.z} make dist 
-
+  - echo ${VERSION}
+  - echo ${TRAVIS_TAG}
+  - make dist 
+  - echo ${VERSION}
+  - echo ${TRAVIS_TAG}
 deploy:
   provider: releases
   api_key:
