@@ -2,15 +2,15 @@
 
 This plugin uses GlusterFS as distributed data storage for containers.
 
-[![Release](https://img.shields.io/github/release/amarkwalder/docker-volume-glusterfs.svg)](https://github.com/amarkwalder/docker-volume-glusterfs/releases/latest)
-[![TravisCI](https://travis-ci.org/amarkwalder/docker-volume-glusterfs.svg)](https://travis-ci.org/amarkwalder/docker-volume-glusterfs)
+[![Release](https://img.shields.io/github/release/watson81/docker-volume-glusterfs.svg)](https://github.com/watson81/docker-volume-glusterfs/releases/latest)
+[![TravisCI](https://travis-ci.org/watson81/docker-volume-glusterfs.svg)](https://travis-ci.org/watson81/docker-volume-glusterfs)
 
 ## Installation
 
 Using go (until we get proper binaries):
 
 ```
-$ go get github.com/amarkwalder/docker-volume-glusterfs
+$ go get github.com/watson81/docker-volume-glusterfs
 ```
 
 ## Usage
