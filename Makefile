@@ -5,7 +5,7 @@
 
 BUILD               = $(shell git rev-parse HEAD)
 
-PLATFORMS           = linux_amd64 linux_386 linux_arm darwin_amd64 darwin_386 freebsd_amd64 freebsd_386
+PLATFORMS           = linux_amd64 linux_386 linux_arm darwin_amd64 darwin_386 freebsd_amd64 freebsd_386 windows_386 windows_amd64
 
 FLAGS_all           = GOPATH=$(GOPATH)
 FLAGS_linux_amd64   = $(FLAGS_all) GOOS=linux GOARCH=amd64
@@ -38,11 +38,12 @@ build: guard-VERSION deps
 deps:
 	$(call msg,"Get dependencies")
 	go get -t ./...
-	go get github.com/golang/lint/golint
-	go get github.com/Sirupsen/logrus
-	go get github.com/coreos/go-systemd/activation
-	go get github.com/opencontainers/runc/libcontainer/user
+	go get -d github.com/golang/lint/golint
+	go get -d github.com/Sirupsen/logrus
+	go get -d github.com/coreos/go-systemd/activation
+	go get -d github.com/opencontainers/runc/libcontainer/user
 	go get -d github.com/Microsoft/go-winio
+	go get -d golang.org/x/sys/windows
 .PHONY: deps
 
 install: guard-VERSION build
@@ -73,7 +74,7 @@ build-all: deps guard-VERSION $(foreach PLATFORM,$(PLATFORMS),dist/$(PLATFORM)/.
 dist: guard-VERSION build-all \
 $(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).zip) \
 $(foreach PLATFORM,$(PLATFORMS),dist/docker-volume-glusterfs-$(VERSION)-$(PLATFORM).tar.gz)
-.PHONY:	dist 
+.PHONY:	dist
 
 release: guard-VERSION dist
 	$(call msg,"Create and push release")
@@ -83,7 +84,6 @@ release: guard-VERSION dist
 
 
 ################################################################################
-
 
 dist/%/.built:
 	$(call msg,"Build binary for $*")

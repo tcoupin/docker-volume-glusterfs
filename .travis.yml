@@ -13,12 +13,12 @@ script:
     echo ${VERSION} ${BUILD}
   - make build
   - make test
-  - make dist 
+  - make dist
 deploy:
   provider: releases
   api_key:
-    secure: t+gv2I3ilkvP9O3EWjPiu/nSKzgUf1+lIpw5+CeG4yfqEY8LgfAYFELCqfBEygvNOq08whpMxh93xAS7eHhae+af4+SYIJ924th64XjlROrTMDy1n77kT2WKv61syNvy/+zpZBY+OS5f435MNhzln1C1sM74JVarACrAK4/swHXN9xHtUNggZosW4BA/cY0Gr7tZnWTf2A0qiqN2eUz8tSqdHrQ98dmBsRYNkKMIARUiyHGtCHZ7Ysz/5JQbLRbTgs/y4s7q5vwvEKSwvZapgMbzyOJhi85Hr1pAeYpEN3Ax8iw6Un8zyA+dzSmA3RZpkOuFQxSJaGHUj16mP5qvqgnCJsj8Oeg5wpzhFG2inAOxWc7+N+HTmxAIZWDF+isNuUfArjaYoQscqci/Kc1IPrPDj+JhAHfM3Y0yYhJYn7Dz9BpVn1GtblrlK2u43fjHFo4BiW/Zr4WW6kxP42A+9nYKkl8iHPxMjoBBhbA7bncitFCeVY9qIxAhaCPslHcKWPftvbMnSvGzQQd1GSE9BJlr/yiFvsdz+QxTDK090OLvH8LNhz+xpvrSmwz2NCkb/Wjll3wzsHb1eNL0vSB2XoHeTVIBfENhyDSDHlBJXkUinte6j12N/YcvYyS3oX+6XXU/9kTX/m5b38NwswFqzSkiFED8rzAD0j16q96ZhqE=
-  file:
+    secure: s5RkXfiKMVjqp18enCNNbBH7wwUSVzdTP0jb9odDN76WvtPov1vt3BIgDm4/c8BW7oEpUE5sEqywPRd0m03XmQaZ7yZtK9ognmx2KiBsuiwQw0C6p5us5ftoNDyYPdXqLzQZDaAWyZ5Z1mwCMQLSDjPyCpwu/t5m9/n58tw8nNVEY0aHdhDwUgCJns3QQwLv60hE+Ux7Q71JfWd95PIvPz0MUQveg253Eaf+QYxOyHskLhRexv/rOQ85esT0E+6m6G3kTOPCAxfP4Ndcoy4sHKVWATz4muC9xC8iId5sSmbIM8rgFnIIDSpIyePuT8iHrBhhfpEhH3dzGc9IGXH8vuWu9NvBaIm+s9R4nhTjPxCVB6IRC3ziodFeg7DC2g5iTB4CsNAw61+AkMOL3bwYWttiKrLxVWaoHX/loU0ouoUGRQajEcCT+zcSoo58EkJ29RxvZaiwOeAOxcASGMcSI8gfSexdmP1d0JzwwuYBLe76B5L17hnoo3KYr+e6EHBJLrojYpt30tGOaBIYD5wf3fyyJD7Ncq5k++2z9C0US89cf6rKhoK9Tk6hJRq0Yo3/BwuOHP8uDyP1O/jjbt76i5LDpenAunoegWYpGReI8lXp/uEf2oGrvqattrogr8dU5IzjyYhsl+KnuxczHZ4Bw58k8MC6O+FRAZ0Eh407KOw=
+   file:
     - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.zip
     - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.tar.gz
     - dist/docker-volume-glusterfs-${VERSION}-linux_386.zip
@@ -33,8 +33,11 @@ deploy:
     - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.tar.gz
     - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.zip
     - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-windows_386.zip
+    - dist/docker-volume-glusterfs-${VERSION}-windows_386.tar.gz
+    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.zip
+    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.tar.gz
   skip_cleanup: true
   overwrite: true
   on:
     tags: true
-    repo: watson81/docker-volume-glusterfs
