@@ -1,0 +1,13 @@
+[Unit]
+Description=Docker volume plugin for GlusterFS
+Documentation=https://github.com/amarkwalder/docker-volume-glusterfs
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/docker-volume-glusterfs.conf
+ExecStart=/usr/local/bin/docker-volume-glusterfs $GLUSTERFS_DRIVER_OPTS
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
