@@ -53,6 +53,23 @@ $ docker-volume-glusterfs -servers gfs-1:gfs2 \
 
 These volumes are replicated among all the peers in the cluster that you specify in the `-servers` flag.
 
+### Starting on boot
+
+For Systemd based distros, use the files in `contrib/systemd`.
+
+```
+mv docker-volume-glusterfs /usr/local/bin/
+mv contrib/systemd/etc/systemd/system/docker-volume-glusterfs.service /etc/systemd/system/
+mv contrib/systemd/etc/sysconfig/docker-volume-glusterfs.conf /etc/sysconfig/
+systemctl daemon-reload
+```
+
+Edit the file /etc/sysconfig/docker-volume-glusterfs.conf` with your config
+
+```
+systemctl start docker-volume-glusterfs && systemctl enable docker-volume-glusterfs
+```
+
 ## LICENSE
 
 MIT
