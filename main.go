@@ -14,7 +14,7 @@ const glusterfsID = "_glusterfs"
 
 var (
 	Version string
-	Build string
+	Build   string
 )
 
 var (
@@ -50,7 +50,7 @@ func main() {
 }
 
 func banner() {
-	fmt.Println("       __           __                            __                   ") 
+	fmt.Println("       __           __                            __                   ")
 	fmt.Println("  ____/ /___  _____/ /_____  _____   _   ______  / /_  ______ ___  ___ ")
 	fmt.Println(" / __  / __ \\/ ___/ //_/ _ \\/ ___/  | | / / __ \\/ / / / / __ `__ \\/ _ \\")
 	fmt.Println("/ /_/ / /_/ / /__/ ,< /  __/ /      | |/ / /_/ / / /_/ / / / / / /  __/")
@@ -66,4 +66,3 @@ func banner() {
 	fmt.Println("Build   : ", Build)
 	fmt.Println()
 }
-
