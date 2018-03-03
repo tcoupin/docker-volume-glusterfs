@@ -1,42 +1,31 @@
 language: go
 go: 1.6.3
-
 script:
-  - if [ "${TRAVIS_TAG}" == "" ];
-    then export VERSION=`git rev-parse --abbrev-ref HEAD`;
-    else export VERSION=${TRAVIS_TAG:1};
-    fi;
-    if [ "${VERSION}" == "HEAD" ];
-    then export VERSION=master;
-    fi;
-    export BUILD=`git rev-parse HEAD`;
-    echo ${VERSION} ${BUILD}
-  - make build
-  - make test
-  - make dist
+- if [ "${TRAVIS_TAG}" == "" ]; then export VERSION=`git rev-parse --abbrev-ref HEAD`;
+  else export VERSION=${TRAVIS_TAG:1}; fi; if [ "${VERSION}" == "HEAD" ]; then export
+  VERSION=master; fi; export BUILD=`git rev-parse HEAD`; echo ${VERSION} ${BUILD}
+- make build
+- make test
+- make dist
 deploy:
   provider: releases
   api_key:
-    secure: s5RkXfiKMVjqp18enCNNbBH7wwUSVzdTP0jb9odDN76WvtPov1vt3BIgDm4/c8BW7oEpUE5sEqywPRd0m03XmQaZ7yZtK9ognmx2KiBsuiwQw0C6p5us5ftoNDyYPdXqLzQZDaAWyZ5Z1mwCMQLSDjPyCpwu/t5m9/n58tw8nNVEY0aHdhDwUgCJns3QQwLv60hE+Ux7Q71JfWd95PIvPz0MUQveg253Eaf+QYxOyHskLhRexv/rOQ85esT0E+6m6G3kTOPCAxfP4Ndcoy4sHKVWATz4muC9xC8iId5sSmbIM8rgFnIIDSpIyePuT8iHrBhhfpEhH3dzGc9IGXH8vuWu9NvBaIm+s9R4nhTjPxCVB6IRC3ziodFeg7DC2g5iTB4CsNAw61+AkMOL3bwYWttiKrLxVWaoHX/loU0ouoUGRQajEcCT+zcSoo58EkJ29RxvZaiwOeAOxcASGMcSI8gfSexdmP1d0JzwwuYBLe76B5L17hnoo3KYr+e6EHBJLrojYpt30tGOaBIYD5wf3fyyJD7Ncq5k++2z9C0US89cf6rKhoK9Tk6hJRq0Yo3/BwuOHP8uDyP1O/jjbt76i5LDpenAunoegWYpGReI8lXp/uEf2oGrvqattrogr8dU5IzjyYhsl+KnuxczHZ4Bw58k8MC6O+FRAZ0Eh407KOw=
+    secure: Xq6nnboO8LguXDseUwcsovIgA3Nb0dewW9o8YKjC1THXJ36jIHSYSAi4mXEdL3hqyDEWz1Rk6pscuULnoMTFX0nINPCwax8YZ7xKoUseu1M0VT0JeCiVbbdlAlwa705NMHzUinkXUSAOFb1HNAFeazQa8ErEFoEAMnujowSyhT8pW+yigz0TXFFoXL6quOgKsk6jYh4IQ+znaMsKIEqoKmmWrVfoLqFe3qWZAw1CRdTIQ/m4ixVOlE9/wHh2BsXtKUkR2NWhrPiBkjFaOOB3OFXJZz5LtGQlgmG+NwYOt+CdGwjuReBoLZzvxxH9p3TGDYtJVr6BxnJzwtRpQLjKvEhfNRJrlTumHAJaj16txHdTBHmrl8WTsXUBjRkrcr0F9137WIy4lv4Kt1mQSF+SlNnFnpSEX0LgNqtdY6I7O9eX0mC0o9GnkEWnmrvEl9mBlsfHJp7KrkQEMgcrk3PrMJzdg1HVn9ZnLuAe3CI3S3paaK5NbuO8PI3gfYgD0gjv1pyuJ1pCz7/RK8tdoxVmuDHQUdzobVQ/PvuJ6gtfhi7GaWLA96jZNXTUbW2FI+t8YJYgCWdG62jeTmmPkeougWx/x1JQr3HLjApniftlD1jLDyKuWC+EgXbs9LOzYgqA6WCpDu3z1/nsmBcUNpBiFK83yZntZG6zYvbehz0MYZk=
   file:
-    - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.zip
-    - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-linux_386.zip
-    - dist/docker-volume-glusterfs-${VERSION}-linux_386.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-linux_arm.zip
-    - dist/docker-volume-glusterfs-${VERSION}-linux_arm.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.zip
-    - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-darwin_386.zip
-    - dist/docker-volume-glusterfs-${VERSION}-darwin_386.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.zip
-    - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.zip
-    - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-windows_386.zip
-    - dist/docker-volume-glusterfs-${VERSION}-windows_386.tar.gz
-    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.zip
-    - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.zip
+  - dist/docker-volume-glusterfs-${VERSION}-linux_amd64.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-linux_386.zip
+  - dist/docker-volume-glusterfs-${VERSION}-linux_386.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-linux_arm.zip
+  - dist/docker-volume-glusterfs-${VERSION}-linux_arm.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.zip
+  - dist/docker-volume-glusterfs-${VERSION}-darwin_amd64.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-darwin_386.zip
+  - dist/docker-volume-glusterfs-${VERSION}-darwin_386.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.zip
+  - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.zip
+  - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.tar.gz
   skip_cleanup: true
   overwrite: true
   on:
