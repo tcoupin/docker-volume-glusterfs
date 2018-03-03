@@ -47,22 +47,22 @@ func (d glusterfsDriver) Create(r *volume.CreateRequest) error {
 	m := d.mountpoint(r.Name)
 
 	if _, ok := d.volumes[m]; ok {
-		return nil //volume.Response{}
+		return nil
 	}
 
 	if d.restClient != nil {
 		exist, err := d.restClient.VolumeExist(r.Name)
 		if err != nil {
-			return err //volume.Response{Err: err.Error()}
+			return err
 		}
 
 		if !exist {
 			if err := d.restClient.CreateVolume(r.Name, d.servers); err != nil {
-				return err //volume.Response{Err: err.Error()}
+				return err
 			}
 		}
 	}
-	return errors.New("Creating Volume failed") //volume.Response{}
+	return errors.New("Creating Volume failed")
 }
 
 func (d glusterfsDriver) Remove(r *volume.RemoveRequest) error {
@@ -75,13 +75,13 @@ func (d glusterfsDriver) Remove(r *volume.RemoveRequest) error {
 		if s.connections <= 1 {
 			if d.restClient != nil {
 				if err := d.restClient.StopVolume(r.Name); err != nil {
-					return err //volume.Response{Err: err.Error()}
+					return err
 				}
 			}
 			delete(d.volumes, m)
 		}
 	}
-	return errors.New("Removng volume failed") //volume.Response{}
+	return errors.New("Removng volume failed")
 }
 
 func (d glusterfsDriver) Path(r *volume.PathRequest) (*volume.PathResponse, error) {
@@ -104,19 +104,18 @@ func (d glusterfsDriver) Mount(r *volume.MountRequest) (*volume.MountResponse, e
 
 	if os.IsNotExist(err) {
 		if err := os.MkdirAll(m, 0755); err != nil {
-			return &volume.MountResponse{}, err //volume.MountResponse{Err: err.Error()}
+			return &volume.MountResponse{}, err
 		}
 	} else if err != nil {
-		return &volume.MountResponse{}, err //volume.MountResponse{Err: err.Error()}
+		return &volume.MountResponse{}, err
 	}
 
 	if fi != nil && !fi.IsDir() {
 		return &volume.MountResponse{}, errors.New(fmt.Sprintf("%v already exist and it's not a directory", m))
-		//volume.MountResponse{Err: fmt.Sprintf("%v already exist and it's not a directory", m)}
 	}
 
 	if err := d.mountVolume(r.Name, m); err != nil {
-		return &volume.MountResponse{}, err //volume.Response{Err: err.Error()}
+		return &volume.MountResponse{}, err
 	}
 
 	d.volumes[m] = &volumeName{name: r.Name, connections: 1}
@@ -133,15 +132,15 @@ func (d glusterfsDriver) Unmount(r *volume.UnmountRequest) error {
 	if s, ok := d.volumes[m]; ok {
 		if s.connections == 1 {
 			if err := d.unmountVolume(m); err != nil {
-				return err //volume.Response{Err: err.Error()}
+				return err
 			}
 		}
 		s.connections--
 	} else {
-		return errors.New(fmt.Sprintf("Unable to find volume mounted on %s", m)) //volume.Response{Err: fmt.Sprintf("Unable to find volume mounted on %s", m)}
+		return errors.New(fmt.Sprintf("Unable to find volume mounted on %s", m))
 	}
 
-	return nil //volume.Response{}
+	return nil
 }
 
 func (d glusterfsDriver) Get(r *volume.GetRequest) (*volume.GetResponse, error) {
@@ -153,7 +152,6 @@ func (d glusterfsDriver) Get(r *volume.GetRequest) (*volume.GetResponse, error) 
 	}
 
 	return &volume.GetResponse{}, errors.New(fmt.Sprintf("Unable to find volume mounted on %s", m))
-	//volume.Response{Err: fmt.Sprintf("Unable to find volume mounted on %s", m)}
 }
 
 func (d glusterfsDriver) List() (*volume.ListResponse, error) {
