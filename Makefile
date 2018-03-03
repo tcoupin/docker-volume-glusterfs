@@ -5,8 +5,10 @@
 
 BUILD               = $(shell git rev-parse HEAD)
 
-PLATFORMS           = linux_amd64 linux_386 linux_arm darwin_amd64 darwin_386 freebsd_amd64 freebsd_386 windows_amd64
+PLATFORMS           = linux_amd64 linux_386 linux_arm darwin_amd64 darwin_386 freebsd_amd64 freebsd_386
+#windows_amd64
 #windows_386
+
 FLAGS_all           = GOPATH=$(GOPATH)
 FLAGS_linux_amd64   = $(FLAGS_all) GOOS=linux GOARCH=amd64
 FLAGS_linux_386     = $(FLAGS_all) GOOS=linux GOARCH=386
