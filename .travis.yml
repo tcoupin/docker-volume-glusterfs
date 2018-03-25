@@ -25,6 +25,10 @@ deploy:
   - dist/docker-volume-glusterfs-${VERSION}-freebsd_amd64.tar.gz
   - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.zip
   - dist/docker-volume-glusterfs-${VERSION}-freebsd_386.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-windows_386.zip
+  - dist/docker-volume-glusterfs-${VERSION}-windows_386.tar.gz
+  - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.zip
+  - dist/docker-volume-glusterfs-${VERSION}-windows_amd64.tar.gz
   skip_cleanup: true
   overwrite: true
   on:
