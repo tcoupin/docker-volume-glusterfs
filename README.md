@@ -35,6 +35,10 @@ See this video for a slightly longer usage explanation:
 
 https://youtu.be/SVtsT9WVujs
 
+## Driver options 
+
+- replica: replica for glusterfs (default to length of peers)
+
 ### Volume creation on demand
 
 This extension can create volumes on the remote cluster if you install https://github.com/aravindavk/glusterfs-rest in one of the nodes of the cluster.

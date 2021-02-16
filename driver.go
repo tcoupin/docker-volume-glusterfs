@@ -9,8 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"strconv"
 
-	"github.com/amarkwalder/docker-volume-glusterfs/rest"
+	"github.com/tcoupin/docker-volume-glusterfs/rest"
 	"github.com/docker/go-plugins-helpers/volume"
 )
 
@@ -57,8 +58,17 @@ func (d glusterfsDriver) Create(r *volume.CreateRequest) error {
 		}
 
 		if !exist {
-			// TODO custom options
-			if err := d.restClient.CreateVolume(r.Name, d.servers); err != nil {
+			replica := len(d.servers)
+			if r.Options != nil {
+				if val, ok := r.Options["replica"]; ok {
+					if i, err := strconv.Atoi(val); err !=nil {
+						replica = i
+					}
+
+				}
+			}
+
+			if err := d.restClient.CreateVolume(r.Name, d.servers, replica); err != nil {
 				return err
 			}
 		}

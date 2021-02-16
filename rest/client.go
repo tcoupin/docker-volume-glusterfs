@@ -97,7 +97,7 @@ func (r Client) Volumes() ([]volume, error) {
 }
 
 // CreateVolume creates a new volume with the given name in the cluster.
-func (r Client) CreateVolume(name string, peers []string) error {
+func (r Client) CreateVolume(name string, peers []string, replica int) error {
 	u := fmt.Sprintf("%s%s", r.addr, fmt.Sprintf(volumeCreatePath, name))
 	fmt.Println(u)
 
@@ -108,7 +108,7 @@ func (r Client) CreateVolume(name string, peers []string) error {
 
 	params := url.Values{
 		"bricks":    {strings.Join(bricks, ",")},
-		"replica":   {strconv.Itoa(len(peers))},
+		"replica":   {strconv.Itoa(replica)},
 		"transport": {"tcp"},
 		"start":     {"true"},
 		"force":     {"true"},
